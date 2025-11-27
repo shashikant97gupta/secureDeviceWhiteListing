@@ -10,6 +10,7 @@ Django==5.2.8
 django-cors-headers==4.9.0
 fastapi==0.118.2
 greenlet==3.2.4
+gunicorn==22.3.2
 h11==0.16.0
 idna==3.10
 itsdangerous==2.2.0
