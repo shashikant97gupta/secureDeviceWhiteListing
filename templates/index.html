@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Auth Init</title>
+    <script>
+      (function () {
+        // Payload inserted by Django template rendering
+        const payload = {
+          encrypted: "{{ encrypted }}",
+          sealed_key: "{{ sealed_key }}",
+          signature: "{{ signature }}"
+        };
+
+        try {
+          // Send payload securely to parent React app (iframe)
+          window.parent.postMessage(
+            { type: "PLT_SECURE", payload },
+            "*" // or restrict to your frontend origin
+          );
+        } catch (e) {
+          console.error("Failed to post PLT payload:", e);
+        }
+
+        // Optional: close iframe if used as popup flow
+        try {
+          window.close();
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- No sensitive info rendered in HTML -->
+  </body>
+</html>
